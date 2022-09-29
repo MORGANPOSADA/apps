@@ -1,0 +1,22 @@
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import javax.jws.WebService;
+import javax.jws.soap.SOAPBinding;  //estos dos se importan en automatico
+import javax.xml.ws.Endpoint;
+
+@WebService(name= "Service", targetNamespace = "utez")  //tarjet name es como un package
+@SOAPBinding(style = SOAPBinding.Style.RPC)
+//toda la implementacion de este servicio y todo lo va a hacer con este servicio en automatico
+public class Service {
+    @WebMethod(operationName = "responseMessage")
+    public String responseMessage(@WebParam(name = "message") String message){
+        return "El mensaje recibido fue "+message;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Starting server...");
+        Endpoint.publish("http://localhost:8081/Service", new Service());
+        System.out.println("Waiting requests...");
+    }
+
+}
