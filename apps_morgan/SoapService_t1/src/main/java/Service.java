@@ -20,9 +20,6 @@ public class Service {
             }
     }
 
-
-
-
     public static void main(String[] args) {
         System.out.println("Starting server...");
         Endpoint.publish("http://localhost:8081/Service", new Service());
